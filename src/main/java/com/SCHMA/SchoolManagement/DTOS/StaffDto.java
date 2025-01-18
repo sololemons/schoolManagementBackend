@@ -19,6 +19,7 @@ public class StaffDto {
     private Long birthYear;
     private Long admissionYear;
     private Role role;
+    private String emails;
 
 
 }
