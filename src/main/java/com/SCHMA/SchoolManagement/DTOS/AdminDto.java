@@ -1,19 +1,19 @@
-package com.SCHMA.SchoolManagement.SECURITY.AUTHENTICATION.ENTITY;
+package com.SCHMA.SchoolManagement.DTOS;
 
+import com.SCHMA.SchoolManagement.ENTITY.Role;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class RegisterRequest {
-
+@NoArgsConstructor
+public class AdminDto {
+    private String password;
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
+    private Role role;
+
 
 }

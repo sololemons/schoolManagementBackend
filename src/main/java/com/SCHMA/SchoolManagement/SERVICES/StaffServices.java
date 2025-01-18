@@ -6,6 +6,8 @@ import com.SCHMA.SchoolManagement.ENTITY.Staff;
 import com.SCHMA.SchoolManagement.ENTITY.Student;
 import com.SCHMA.SchoolManagement.REPOSITORY.StaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +50,7 @@ public class StaffServices {
     }
 
 
-    public ResponseEntity<StaffDto> getStaffByStaffID(int staffID) {
+    public ResponseEntity<StaffDto> getStaffByStaffID(Long staffID) {
 
         Optional<Staff> staffOptional = staffRepository.findById(staffID);
 
@@ -83,7 +85,7 @@ public class StaffServices {
     }
 
 
-    public ResponseEntity<StaffDto> updateStaffByStaffID(StaffDto staffDTO, int staffID) {
+    public ResponseEntity<StaffDto> updateStaffByStaffID(StaffDto staffDTO, Long staffID) {
 
         Optional<Staff> staffOptional = staffRepository.findById(staffID);
         if (staffOptional.isPresent()) {
@@ -109,7 +111,7 @@ public class StaffServices {
 
     }
 
-    public ResponseEntity deleteStaffByID(int staffID) {
+    public ResponseEntity deleteStaffByID(Long staffID) {
         Optional<Staff> staffOptional = staffRepository.findById(staffID);
         if (staffOptional.isPresent()) {
             Staff staff = staffOptional.get();
@@ -119,5 +121,10 @@ public class StaffServices {
         else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    public Page<Staff> getFilteredStaff(Long staffID, Long admissionYear, String department, Pageable pageable) {
+
+        return staffRepository.findByFilters(staffID,admissionYear,department,pageable);
     }
 }

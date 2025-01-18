@@ -4,6 +4,9 @@ import com.SCHMA.SchoolManagement.DTOS.StudentDto;
 import com.SCHMA.SchoolManagement.ENTITY.Student;
 import com.SCHMA.SchoolManagement.REPOSITORY.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +20,12 @@ public class StudentServices {
     @Autowired
     private StudentRepository studentRepository;
 
-    public StudentServices(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+
+
+    public Page<Student> getFilteredStudents(Long AdmissionId, Integer AdmissionYear, String Stream, Pageable pageable) {
+        return studentRepository.findByFilters(AdmissionId, AdmissionYear, Stream, pageable);
     }
+
 
 
     public List<StudentDto> getAllStudents() {

@@ -23,7 +23,7 @@ public class Staff implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int staffID;
+    private  Long staffID;
 
     @Column(name = "firstName", nullable = false)
     private String firstName;
@@ -49,19 +49,17 @@ public class Staff implements UserDetails {
     @Column(name = "department")
     private String department;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
 
     @Column(name = "birthYear")
-    private Integer birthYear;
+    private Long birthYear;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    // Method to calculate age
-    public int getAge() {
-        return LocalDate.now().getYear() - this.birthYear;
-    }
+
+
 
     // UserDetails implementation methods
     @Override

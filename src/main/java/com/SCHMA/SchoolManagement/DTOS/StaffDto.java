@@ -16,7 +16,7 @@ public class StaffDto {
     private String position;
     private String Gender;
     private String phoneNumber;
-    private Integer birthYear;
+    private Long birthYear;
     private Long admissionYear;
     private Role role;
 
